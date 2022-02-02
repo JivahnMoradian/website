@@ -9,18 +9,18 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     max-width: 100%;
 }
 
-body {
-
+html {
+  font-size: 1.2rem;
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 3rem;
 }
 
 h2 {
-  font-size: 1.8em;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  font-size: 2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 a {
@@ -34,8 +34,7 @@ ul {
 }
 
 li {
-  display: inline-block;
-  padding: 0.5em;
+  padding: 0.75rem;
 }
 
 a:hover, a:hover .text {
@@ -51,15 +50,19 @@ a:hover, a:hover .text {
   background-color: grey;
 }
 
+#navigation li {
+  display: inline-block;
+}
+
 #banner {
   display: inline-block;
   position: relative;
-  margin-top: 2em;
+  margin-top: 2.5rem;
 }
 
 #title {
   text-align: center;
-  padding-bottom: 2em;
+  padding-bottom: 2rem;
 }
 
 #container {
@@ -69,10 +72,10 @@ a:hover, a:hover .text {
 }
 
 .container-item {
-  font-size: 1.5em;
+  font-size: 1.5rem;
   text-align: center;
-  border: 0.1em solid black;
-  margin-bottom: 1em;
+  border: 0.1rem solid black;
+  margin-bottom: 1rem;
   position: relative;
   width: 80%;
 }
@@ -90,39 +93,46 @@ a:hover, a:hover .text {
 }
 
 #border {
-  padding: 2em;
+  padding: 2rem;
 }
 
-.box-text {
-  padding-bottom: 2em;
+.box-text, .box-img, .box-stats {
+  margin-bottom: 2rem;
 }
 
-.box-img {
-  margin: auto;
-  padding-bottom: 2em;
+#map-stats .box-img, #map-stats .box-stats {
+  border: 0.1rem solid black;
 }
 
-
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 60em) {
   #border {
     margin: 0 11% 0 11%;
-    border-left: 0.1em dashed black;
-    border-right: 0.1em dashed black;
+    border-left: 0.1rem dashed black;
+    border-right: 0.1rem dashed black;
   }
   .container-item {
-    width: 9em;
-    margin: 0 0.5em 1em 0.5em;
+    width: 9rem;
+    margin: 0 0.5rem 1rem 0.5rem;
   }
-  .box {
+  .box, #map-stats {
     display: flex;
     align-items: center;
+    justify-content: space-around;
   }
   .box-text {
     min-width: 60%;
   }
   .box-img {
-    max-width: 20em;
-    padding-left: 1em;
-    padding-right: 1em;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  .box .box-img {
+    max-width: 20rem;
+  }
+  .box-stats {
+    min-width: 30%;
+  }
+  #map-stats .box-img {
+    max-width: 30rem;
   }
 }
