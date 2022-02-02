@@ -74,7 +74,7 @@ a:hover, a:hover .text {
 .container-item {
   font-size: 1.25rem;
   text-align: center;
-  border: 0.1rem solid black;
+  border: 0.1rem dashed black;
   margin-bottom: 1rem;
   position: relative;
   width: 80%;
@@ -85,6 +85,7 @@ a:hover, a:hover .text {
   bottom: 0;
   width: 100%;
   background-color: white;
+  border-radius: 0 0 1em 1em;
 }
 
 .container-item img {
@@ -92,8 +93,16 @@ a:hover, a:hover .text {
   height: 100%;
 }
 
+.container-item, .container-item img {
+  border-radius: 1em;
+}
+
 #border {
   padding: 2rem;
+}
+
+.box-stats {
+  font-size: 0.85rem;
 }
 
 .box-text, .box-img, .box-stats {
