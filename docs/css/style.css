@@ -72,7 +72,7 @@ a:hover, a:hover .text {
 }
 
 .container-item {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   text-align: center;
   border: 0.1rem solid black;
   margin-bottom: 1rem;
@@ -104,7 +104,7 @@ a:hover, a:hover .text {
   border: 0.1rem solid black;
 }
 
-@media screen and (min-width: 60em) {
+/* @media screen and (min-width: 60em) {
   #border {
     margin: 0 11% 0 11%;
     border-left: 0.1rem dashed black;
@@ -135,4 +135,4 @@ a:hover, a:hover .text {
   #map-stats .box-img {
     max-width: 30rem;
   }
-}
+} */
