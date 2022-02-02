@@ -104,15 +104,15 @@ a:hover, a:hover .text {
   border: 0.1rem solid black;
 }
 
-/* @media screen and (min-width: 60em) {
+@media screen and (min-width: 60em) {
   #border {
     margin: 0 11% 0 11%;
     border-left: 0.1rem dashed black;
     border-right: 0.1rem dashed black;
   }
   .container-item {
-    width: 9rem;
-    margin: 0 0.5rem 1rem 0.5rem;
+    width: 12rem;
+    margin: 0 1rem 2rem 1rem;
   }
   .box, #map-stats {
     display: flex;
@@ -135,4 +135,4 @@ a:hover, a:hover .text {
   #map-stats .box-img {
     max-width: 30rem;
   }
-} */
+}
