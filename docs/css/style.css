@@ -14,11 +14,11 @@ html {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
@@ -29,18 +29,18 @@ a {
   color: black;
 }
 
+a:hover, a:hover .text {
+  color: darkblue;
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+
 ul {
   list-style-type: none;
 }
 
 li {
-  padding: 0.75rem;
-}
-
-a:hover, a:hover .text {
-  color: darkblue;
-  text-decoration: underline;
-  text-transform: uppercase;
+  padding: 0.75rem 0.5rem 0.75rem 0.5rem;
 }
 
 #navigation {
@@ -63,6 +63,10 @@ a:hover, a:hover .text {
 #title {
   text-align: center;
   padding-bottom: 2rem;
+}
+
+#border {
+  padding: 1rem;
 }
 
 #container {
@@ -97,10 +101,6 @@ a:hover, a:hover .text {
   border-radius: 1em;
 }
 
-#border {
-  padding: 2rem;
-}
-
 .box-stats {
   font-size: 0.85rem;
 }
@@ -119,14 +119,14 @@ a:hover, a:hover .text {
     border-left: 0.1rem dashed black;
     border-right: 0.1rem dashed black;
   }
-  .container-item {
-    width: 12rem;
-    margin: 0 1rem 2rem 1rem;
-  }
-  .box, #map-stats {
+  #map-stats, .box {
     display: flex;
     align-items: center;
     justify-content: space-around;
+  }
+  .container-item {
+    width: 12rem;
+    margin: 0 1rem 2rem 1rem;
   }
   .box-text {
     min-width: 60%;
