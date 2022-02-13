@@ -3,14 +3,15 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     padding: 0;
     border: 0;
     outline: 0;
-    font-size: 100%;
-    vertical-align: baseline;
     background: transparent;
+    vertical-align: baseline;
+    font-size: 100%;
     max-width: 100%;
 }
 
 html {
   font-size: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
@@ -78,7 +79,7 @@ li {
 .container-item {
   font-size: 1.25rem;
   text-align: center;
-  border: 0.1rem dashed black;
+  border: 0.05rem solid black;
   margin-bottom: 1rem;
   position: relative;
   width: 80%;
@@ -128,18 +129,12 @@ li {
     width: 12rem;
     margin: 0 1rem 2rem 1rem;
   }
-  .box-text {
-    min-width: 60%;
-  }
   .box-img {
     margin-left: 1rem;
     margin-right: 1rem;
   }
   .box .box-img {
     max-width: 20rem;
-  }
-  .box-stats {
-    min-width: 30%;
   }
   #map-stats .box-img {
     max-width: 30rem;
