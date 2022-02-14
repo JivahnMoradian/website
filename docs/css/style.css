@@ -133,10 +133,7 @@ li {
     margin-left: 1rem;
     margin-right: 1rem;
   }
-  .box .box-img {
-    max-width: 20rem;
-  }
-  #map-stats .box-img {
+  #map-stats .box-img, .box .box-img {
     max-width: 30rem;
   }
 }

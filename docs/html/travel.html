@@ -18,7 +18,10 @@
     </div>
 
     <div id="banner">
-      <img src = "../img/sanddunes.heic" alt="sand dunes national park at sunset">
+      <picture>
+        <source media="(min-width:60em)" srcset="../img/sanddunes.heic">
+        <img src="../img/sanddunes-index.heic" alt="sand dunes national park at sunset">
+      </picture>
     </div>
 
     <div id="border">
@@ -28,6 +31,15 @@
       </div>
 
       <div id="container">
+
+        <div class="container-item">
+          <a href="../projects/travel/belgrade/belgrade.html">
+            <img src="../projects/travel/belgrade/travel-page.jpg" alt="saint sava church">
+            <div class="text">
+              <p>Belgrade,<br>Serbia</p>
+            </div>
+          </a>
+        </div>
 
         <div class="container-item">
           <a href="../projects/travel/pristina/pristina.html">
@@ -43,15 +55,6 @@
             <img src="../projects/travel/skopje/travel-page.jpg" alt="alexander the great statue in skopje">
             <div class="text">
               <p>Skopje,<br>North Macedonia</p>
-            </div>
-          </a>
-        </div>
-
-        <div class="container-item">
-          <a href="../projects/travel/belgrade/belgrade.html">
-            <img src="../projects/travel/belgrade/travel-page.jpg" alt="saint sava church">
-            <div class="text">
-              <p>Belgrade,<br>Serbia</p>
             </div>
           </a>
         </div>
