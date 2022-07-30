@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Elements</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/style.css">
+  </head>
+
+  <body>
+    <div id="navigation">
+      <ul>
+        <li><a href="../../index.html">About</a></li>
+        <li><a href="../../html/travel.html">Travel</a></li>
+        <li><a href="elements.html"><strong>&ord;nalysis</strong></a></li>
+      </ul>
+    </div>
+
+    <p><br><br><br></p>
+    <input id="elementFilter" type="text" placeholder="Element">
+    <button onclick="makePieChart()">Enter</button>
+    <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <script>
+      var chart = null;
+      function makePieChart() {
+        if (chart != null) {
+          chart.destroy();
+        }
+        let targetElement = document.getElementById("elementFilter").value;
+        var countries = [];
+        var production = [];
+        var reserves = [];
+        var infoList = [];
+        var field = "Production 2021";
+
+        for (var key in data) {
+          if (data[key]['Element'] == targetElement) {
+            infoList.push(data[key]);
+          }
+        }
+
+        var rightLength = [];
+        var tempPast = 999999999999;
+        for (var i = 0; i < 5; i++) {
+          var tempMax = 0;
+          var tempKey = {};
+          for (var key in infoList) {
+            if (infoList[key][field] > tempMax && infoList[key][field] < tempPast && infoList[key]['Country'] != 'Other') {
+              tempMax = infoList[key][field];
+              tempKey = infoList[key];
+            }
+          }
+          if (Object.keys(tempKey).length != 0) {
+            rightLength.push(tempKey);
+            tempPast = tempKey[field];
+          }
+        }
+
+        for (var key in rightLength) {
+          countries.push(rightLength[key]['Country']);
+          production.push(rightLength[key][field]);
+        }
+
+        var otherProduction = 0;
+        for (var key in infoList) {
+          otherProduction += infoList[key][field];
+        }
+        for (var key in production) {
+          otherProduction -= production[key];
+        }
+        countries.push("Other");
+        production.push(otherProduction);
+
+        backgroundColors = ["#E2B5FD", "#C3B5FD", "#BBF295", "#EAFCA2", "#FAE382", "#F4B49C"];
+        var backgrounds = [];
+        var borders = [];
+        for (var key in production) {
+          borders.push("black");
+          backgrounds.push(backgroundColors[key]);
+        }
+
+        Chart.defaults.global.defaultFontColor = 'black';
+        Chart.defaults.global.defaultFontStyle = 'bold';
+        chart = new Chart("myChart", {
+          type: "pie",
+          data: {
+            labels: countries,
+            datasets: [{
+              data: production,
+              backgroundColor: backgrounds,
+              borderColor: borders,
+            }]
+          },
+          options: {
+            title: {
+              text: "Element Production by Country, 2021",
+              fontSize: 18,
+              display: true
+            },
+            legend: {
+              position: "right",
+            },
+            plugins: {
+              datalabels: {
+                formatter: (value, ctx) => {
+                  let datasets = ctx.chart.data.datasets;
+                  if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
+                    let sum = datasets[0].data.reduce((a, b) => a + b, 0);
+                    let percentage = Math.round((value / sum) * 100) + '%';
+                    return percentage;
+                  } else {
+                    return percentage;
+                  }
+                },
+              }
+            }
+          }
+        });
+      }
+    </script>
+
+  </body>
+</html>
