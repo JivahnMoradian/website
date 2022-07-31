@@ -16,14 +16,30 @@
       </ul>
     </div>
 
-    <p><br><br><br></p>
+    <p><br><br><br><strong>Type in an element and see its top 5 producing countries.</strong></p>
     <input id="elementFilter" type="text" placeholder="Element">
-    <button onclick="makePieChart()">Enter</button>
-    <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+    <button id="makeGraph" onclick="makePieChart()">Enter</button>
+    <canvas id="elementPieChart" style="width:100%;max-width:700px"></canvas>
+    <p><br><br><br><br><br><br><strong>Type in country and see what elements it produces.</strong></p>
+    <input id="countryFilter" type="text" placeholder="Country">
+    <button id="makeCountryTable" onclick="makeCountryTable()">Enter</button>
+    <canvas id="countryTable" style="width:100%;max-width:700px"></canvas>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
     <script type="text/javascript" src="script.js"></script>
     <script>
+      function allowEnter(filter, button) {
+        var input = document.getElementById(filter);
+        input.addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById(button).click();
+          }
+        });
+      }
+      allowEnter("elementFilter", "makeGraph");
+
       var chart = null;
       function makePieChart() {
         if (chart != null) {
@@ -37,7 +53,7 @@
         var field = "Production 2021";
 
         for (var key in data) {
-          if (data[key]['Element'] == targetElement) {
+          if (data[key]['Element'].toLowerCase() === targetElement.toLowerCase()) {
             infoList.push(data[key]);
           }
         }
@@ -84,7 +100,7 @@
 
         Chart.defaults.global.defaultFontColor = 'black';
         Chart.defaults.global.defaultFontStyle = 'bold';
-        chart = new Chart("myChart", {
+        chart = new Chart("elementPieChart", {
           type: "pie",
           data: {
             labels: countries,
@@ -96,7 +112,7 @@
           },
           options: {
             title: {
-              text: "Element Production by Country, 2021",
+              text: document.getElementById("elementFilter").value.toUpperCase() + " Production by Country, 2021",
               fontSize: 18,
               display: true
             },
