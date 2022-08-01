@@ -114,6 +114,10 @@ li {
   border: 0.1rem solid black;
 }
 
+td {
+  text-align: center;
+}
+
 @media screen and (min-width: 60em) {
   #border {
     margin: 0 11% 0 11%;
