@@ -23,7 +23,7 @@
     <p><br><br><br><br><br><br><strong>Type in country and see what elements it produces.</strong></p>
     <input id="countryFilter" type="text" placeholder="Country">
     <button id="makeCountryTable" onclick="makeCountryTable()">Enter</button>
-    <canvas id="countryTable" style="width:100%;max-width:700px"></canvas>
+    <div id="countryTable" style="width:100%;max-width:700px"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -39,6 +39,89 @@
         });
       }
       allowEnter("elementFilter", "makeGraph");
+      allowEnter("countryFilter", "makeCountryTable");
+
+      function getFieldSet(array, field) {
+        var elements = new Set();
+        for (var item in array) {
+          elements.add(array[item][field]);
+        }
+        return elements;
+      }
+      var elementsList = getFieldSet(data, "Element");
+      var countriesList = getFieldSet(data, "Country");
+
+      function swapRows(row1, row2) {
+        var temp = row1.innerHTML;
+        row1.innerHTML = row2.innerHTML;
+        row2.innerHTML = temp;
+      }
+
+
+      function makeCountryTable() {
+        let targetCountry = document.getElementById("countryFilter").value;
+        document.getElementById("countryTable").innerHTML = "";
+        let tableTitle = document.createElement("tableTitle");
+        tableTitle.innerHTML = '<strong>' + targetCountry.toUpperCase() + '</strong>';
+        document.getElementById("countryTable").appendChild(tableTitle);
+
+        let table = document.createElement("table");
+        let tableHead = document.createElement("thead");
+        let tableBody = document.createElement("tbody");
+        document.getElementById("countryTable").appendChild(table);
+        table.appendChild(tableHead);
+        table.appendChild(tableBody);
+
+        let headerRow = document.createElement("tr");
+        let heading1 = document.createElement("th");
+        let heading2 = document.createElement("th");
+        let heading3 = document.createElement("th");
+        heading1.innerHTML = "Element";
+        heading2.innerHTML = "Percentage";
+        heading3.innerHTML = "Production";
+        headerRow.appendChild(heading1);
+        headerRow.appendChild(heading2);
+        headerRow.appendChild(heading3);
+        tableHead.appendChild(headerRow);
+
+        maxVal = 1;
+        percentages = [];
+        for (var item in data) {
+          if (data[item]['Country'].toLowerCase() == targetCountry.toLowerCase()) {
+            let newRow = document.createElement("tr");
+            let cell1 = document.createElement("td");
+            let cell2 = document.createElement("td");
+            let cell3 = document.createElement("td");
+            percentage = data[item]["Production 2021 %"];
+            percentages.push(percentage);
+            cell1.innerHTML = '<strong>' + data[item]["Element"] + '</strong>';
+            cell2.innerHTML = Math.round(percentage*100) + '%';
+            cell3.innerHTML = data[item]["Production 2021"];
+            newRow.appendChild(cell1);
+            newRow.appendChild(cell2);
+            newRow.appendChild(cell3);
+            table.insertBefore(newRow, tableHead);
+          }
+        }
+
+        rows = document.getElementsByTagName("table")[0].rows;
+        var row = 0;
+        while (row < rows.length) {
+          refVal = 100;
+          row = 0;
+          while (row < rows.length) {
+            percentageValue = parseInt(rows[row].children[1].innerHTML.replace('%', ''));
+            if (percentageValue > refVal) {
+              swapRows(rows[row], rows[row-1]);
+              break;
+            }
+            else {
+              refVal = percentageValue;
+            }
+            row += 1;
+s          }
+        }
+      }
 
       var chart = null;
       function makePieChart() {
