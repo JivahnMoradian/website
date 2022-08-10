@@ -18,11 +18,13 @@
 
     <p><br><br><br><strong>Type in an element and see its top 5 producing countries.</strong></p>
     <input id="elementFilter" type="text" placeholder="Element">
-    <button id="makeGraph" onclick="makePieChart()">Enter</button>
-    <canvas id="elementPieChart" style="width:100%;max-width:700px"></canvas>
-    <p><br><br><br><br><br><br><strong>Type in country and see what elements it produces.</strong></p>
+    <button id="makeGraph" onclick="makePieChart('Production 2021', 'elementPieChart1'); makePieChart('Reserves', 'elementPieChart2')">Enter</button>
+    <canvas id="elementPieChart1" style="width:100%;max-width:700px"></canvas>
+    <canvas id="elementPieChart2" style="width:100%;max-width:700px"></canvas>
+    <p><br><br><br><br><br><br><strong>Type in a country and see what elements it produces.</strong></p>
     <input id="countryFilter" type="text" placeholder="Country">
     <button id="makeCountryTable" onclick="makeCountryTable()">Enter</button>
+    <p><br></p>
     <div id="countryTable" style="width:100%;max-width:700px"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
@@ -56,7 +58,6 @@
         row1.innerHTML = row2.innerHTML;
         row2.innerHTML = temp;
       }
-
 
       function makeCountryTable() {
         let targetCountry = document.getElementById("countryFilter").value;
@@ -123,17 +124,20 @@
         }
       }
 
-      var chart = null;
-      function makePieChart() {
-        if (chart != null) {
-          chart.destroy();
+      var chart1 = null;
+      var chart2 = null;
+      var element1 = "temp1";
+      var element2 = "temp2";
+      function makePieChart(field, location) {
+        if (element1 == element2) {
+          chart1.destroy();
+          chart2.destroy();
         }
         let targetElement = document.getElementById("elementFilter").value;
         var countries = [];
         var production = [];
         var reserves = [];
         var infoList = [];
-        var field = "Production 2021";
 
         for (var key in data) {
           if (data[key]['Element'].toLowerCase() === targetElement.toLowerCase()) {
@@ -183,7 +187,7 @@
 
         Chart.defaults.global.defaultFontColor = 'black';
         Chart.defaults.global.defaultFontStyle = 'bold';
-        chart = new Chart("elementPieChart", {
+        var chart = new Chart(location, {
           type: "pie",
           data: {
             labels: countries,
@@ -195,7 +199,7 @@
           },
           options: {
             title: {
-              text: document.getElementById("elementFilter").value.toUpperCase() + " Production by Country, 2021",
+              text: document.getElementById("elementFilter").value.toUpperCase() + " " + field + " Breakdown by Country",
               fontSize: 18,
               display: true
             },
@@ -218,6 +222,13 @@
             }
           }
         });
+        if (location == 'elementPieChart1') {
+          chart1 = chart;
+          element1 = document.getElementById("elementFilter").value;
+        } else {
+          chart2 = chart;
+          element2 = document.getElementById("elementFilter").value;
+        }
       }
     </script>
 
