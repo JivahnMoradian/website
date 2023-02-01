@@ -1,0 +1,150 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    vertical-align: baseline;
+    font-size: 100%;
+    max-width: 100%;
+}
+
+html {
+  font-size: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+}
+
+a:hover, a:hover .text {
+  color: darkblue;
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  padding: 0.75rem 0.5rem 0.75rem 0.5rem;
+}
+
+#navigation {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  background-color: grey;
+}
+
+#navigation li {
+  display: inline-block;
+}
+
+#banner {
+  display: inline-block;
+  position: relative;
+  margin-top: 2.5rem;
+}
+
+#title #travels {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+#border {
+  padding: 1rem;
+}
+
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.container-item {
+  font-size: 1.25rem;
+  text-align: center;
+  border: 0.05rem solid black;
+  margin-bottom: 1rem;
+  position: relative;
+  width: 80%;
+}
+
+.container-item .text {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  border-radius: 0 0 1em 1em;
+  height: 2rem;
+}
+
+.container-item img {
+  width: 100%;
+  height: 100%;
+}
+
+.container-item, .container-item img {
+  border-radius: 1em;
+}
+
+.box-stats {
+  font-size: 0.85rem;
+}
+
+.box-text, .box-img, .box-stats {
+  margin-bottom: 2rem;
+}
+
+#map-stats .box-img, #map-stats .box-stats {
+  border: 0.1rem solid black;
+}
+
+table, th, td {
+  text-align: center;
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 10px;
+}
+
+@media screen and (min-width: 60em) {
+  #border {
+    margin: 0 11% 0 11%;
+    border-left: 0.1rem dashed black;
+    border-right: 0.1rem dashed black;
+  }
+  #map-stats, .box {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .container-item {
+    width: 12rem;
+    margin: 0 1rem 2rem 1rem;
+  }
+  .box-img {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  .img-tall {
+    max-width: 18rem;
+  }
+  #map-stats .box-img, .box .box-img {
+    max-width: 30rem;
+  }
+}
